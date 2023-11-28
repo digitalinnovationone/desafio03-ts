@@ -3,15 +3,17 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { changeLocalStorage } from '../services/storage'
 import { AppContext } from './AppContext'
+import { IUser } from '../services/interfaces/user.interface'
 
 export const Header  = () => {
-  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
-  const navigate = useNavigate()
+  const { isLoggedIn, setIsLoggedIn, setUser } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const logout = () => {
-    changeLocalStorage({ login: false})
-    setIsLoggedIn(false)
-    navigate('/')
+    changeLocalStorage({ login: false, user: {} as IUser});
+    setIsLoggedIn(false);
+    setUser({} as IUser);
+    navigate('/');
   }
 
   return(

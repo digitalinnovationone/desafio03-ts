@@ -1,9 +1,12 @@
+import { IUser } from "./interfaces/user.interface";
+
 interface IDIoBank {
     login: boolean;
+    user?: IUser;
 }
 
 const dioBank = {
-    login: false
+    login: false,
 }
 
 export const getAllLocalStorage = (): string | null  => {
