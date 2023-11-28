@@ -10,8 +10,11 @@ import { changeLocalStorage } from "../services/storage";
 const Home = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { setIsLoggedIn, setUser } = useContext(AppContext);
+  const { setIsLoggedIn, setUser, isLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
+
+  isLoggedIn && navigate("/conta/1");
+
 
   const validateUser = async (email: string, password: string) => {
     const user = await login(email, password);
