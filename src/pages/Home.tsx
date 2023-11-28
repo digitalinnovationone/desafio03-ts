@@ -15,7 +15,6 @@ const Home = () => {
 
   isLoggedIn && navigate("/conta/1");
 
-
   const validateUser = async (email: string, password: string) => {
     const user = await login(email, password);
 
