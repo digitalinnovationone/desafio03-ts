@@ -23,7 +23,7 @@ const Conta = () => {
 
   const actualData = new Date();
 
-  if (user && id !== user.id) {
+  if (id !== user?.id) {
     navigate("/");
   }
 
