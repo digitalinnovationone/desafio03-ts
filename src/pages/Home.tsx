@@ -8,39 +8,47 @@ import { login } from "../services/login";
 import { changeLocalStorage } from "../services/storage";
 
 const Home = () => {
-    const [ email, setEmail ] = useState<string>('');
-    const [ password, setPassword ] = useState<string>('');
-    const { setIsLoggedIn } = useContext(AppContext);
-    const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const { setIsLoggedIn, setUser } = useContext(AppContext);
+  const navigate = useNavigate();
 
-    const validateUser = async (email: string, password: string) => {
-        const loggedIn = await login(email, password);
+  const validateUser = async (email: string, password: string) => {
+    const user = await login(email, password);
 
-        if(!loggedIn){
-            return alert('Email inválido');
-        }
-
-        setIsLoggedIn(true);
-        changeLocalStorage({ login: true });
-        navigate('/conta/1');
+    if (!user) {
+      return alert("Email ou senha inválidos");
     }
-  
-    return (
-        <Box padding="25px">
-            <Card>
-                <Center>
-                    <h1>Faça o login</h1>
-                </Center>
-                <Input placeholder="email" value={email} onChange={e => setEmail(e.target.value)} />
-                <Input placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
-                <Center>
-                    <DButton
-                        onClick={() => validateUser(email, password)}
-                    />
-                </Center>
-            </Card>
-        </Box>
-    );
-}
+
+    setIsLoggedIn(true);
+
+    setUser(user);
+    changeLocalStorage({ login: true, user });
+    navigate("/conta/1");
+  };
+
+  return (
+    <Box padding="25px">
+      <Card>
+        <Center>
+          <h1>Faça o login</h1>
+        </Center>
+        <Input
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Center>
+          <DButton onClick={() => validateUser(email, password)} />
+        </Center>
+      </Card>
+    </Box>
+  );
+};
 
 export default Home;
