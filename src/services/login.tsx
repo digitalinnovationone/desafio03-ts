@@ -1,11 +1,12 @@
 import { api } from "../api";
+import { IUser } from "./interfaces/user.interface";
 
-export const login = async (email: string, password: string): Promise<boolean> => {
-    const data: any = await api;
+export const login = async (emailProp: string, passwordProp: string): Promise<false | IUser> => {
+    const user = await api;
 
-    if(email !== data.email || password !== data.password) {
+    if(emailProp !== user.email || passwordProp !== user.password) {
         return false;
     }
 
-    return true;
+    return user;
 }
