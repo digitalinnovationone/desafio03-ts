@@ -1,3 +1,5 @@
+import { IUser } from './services/interfaces/user.interface';
+
 const conta = {
     email: 'vini@dio.bank',
     password: '123456789',
@@ -6,8 +8,8 @@ const conta = {
     id: '1'
 }
 
-export const api = new Promise((resolve) => {
+export const api = new Promise<IUser>((resolve) => {
     setTimeout(() => {
-        resolve(conta)
+        resolve(conta);
     }, 3000)
-})
+});
