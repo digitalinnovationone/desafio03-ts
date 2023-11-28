@@ -6,7 +6,7 @@ import ContaInfo from "./pages/ContaInfo"
 import Home from "./pages/Home"
 
 const MainRoutes = () => {
-    const { isLoggedIn } = useContext(AppContext)
+    const { isLoggedIn } = useContext(AppContext);
 
     return(
         <Routes>
